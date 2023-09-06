@@ -65,6 +65,48 @@ function calculate() {
 }
 
 /**
+ * Performs the chosen scientific operation on the current input.
+ * @param {string} func - The chosen scientific function.
+ */
+function performScientific(func) {
+  let result;
+  const current = parseFloat(currentInput);
+
+  if (isNaN(current)) return;
+
+  switch (func) {
+    case "sqrt":
+      if (current >= 0) {
+        result = Math.sqrt(current);
+      } else {
+        alert("Cannot compute the square root of a negative number!");
+        clearAll();
+        return;
+      }
+      break;
+    case "square":
+      result = Math.pow(current, 2);
+      break;
+    case "ln":
+      if (current > 0) {
+        result = Math.log(current);
+      } else {
+        alert("Cannot compute the natural logarithm of a non-positive number!");
+        clearAll();
+        return;
+      }
+      break;
+    case "exp":
+      result = Math.exp(current);
+      break;
+    default:
+      return;
+  }
+  currentInput = result.toString();
+  document.getElementById("display").value = currentInput;
+}
+
+/**
  * Clears all the inputs and resets the state.
  */
 function clearAll() {
